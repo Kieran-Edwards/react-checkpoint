@@ -1,0 +1,13 @@
+@import "../style/variables.scss";
+
+.footer {
+    height: 20rem;
+    background-color: $black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__logo {
+        height: 50%;
+    }
+}
