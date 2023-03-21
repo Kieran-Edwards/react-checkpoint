@@ -1,0 +1,66 @@
+@import "../style/variables.scss";
+
+.product {
+    flex: 1 0 20rem;
+    height: auto;
+    padding: 1.5rem;
+    position: relative;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &__img-wrap {
+        width: 100%;
+        height: 20rem;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    &__img {
+        height: 80%;
+        width: 80%;
+        cursor: pointer;
+        object-fit: contain;
+    }
+
+    &__info {
+        padding: 0 1rem 0;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__title {
+        height: auto;
+        overflow: hidden;
+        font-size: 1rem;
+        text-align: left;
+        text-overflow: ellipsis;
+    }
+
+    &__price {
+        font-size: 0.8rem;
+        padding-top: 0.2rem;
+        text-align: left;
+    }
+
+    &__atc {
+        width: 100%;
+        color: white;
+        padding: 0.5rem;
+        cursor: pointer;
+        border: none;
+        background-color: $black;
+    }
+
+    &__atw {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+}

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import Product from "./Product";
 
+import "./plp.scss";
+
 const Plp: React.FC = () => {
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -22,12 +24,13 @@ const Plp: React.FC = () => {
                     id: productData.id,
                     title: productData.title,
                     desc: productData.description,
-                    price: productData.price,
+                    price: productData.price.toLocaleString("en-GB", {
+                        style: "currency",
+                        currency: "GBP",
+                    }),
                     img: productData.image,
                 };
             });
-
-            console.log(transformedProducts);
 
             setProducts(transformedProducts);
             setIsLoading(false);

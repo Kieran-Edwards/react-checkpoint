@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./product.scss";
+
 interface ProductProps {
     id: number;
     title: string;
@@ -9,7 +11,6 @@ interface ProductProps {
 }
 
 const Product: React.FC<ProductProps> = (props) => {
-    console.log(props);
     return (
         <div className="product">
             <div className="product__img-wrap">
@@ -19,15 +20,13 @@ const Product: React.FC<ProductProps> = (props) => {
                     alt={props.desc}
                 ></img>
             </div>
-            <div className="product__info">
-                <h2 className="product__title">{props.title}</h2>
-                <div className="product__price-cta-wrap">
-                    <h3 className="product__price">£{props.price}</h3>
-                    {/* <p className="product__desc">{props.desc}</p> */}
-                    <div className="product__ctas">
-                        <div>Add To Bag</div>
-                        <div>WishList</div>
-                    </div>
+            <h2 className="product__title">{props.title}</h2>
+            <div className="product__price-cta-wrap">
+                <h3 className="product__price">{props.price}</h3>
+                {/* <p className="product__desc">{props.desc}</p> */}
+                <div className="product__ctas">
+                    <button className="product__atc">Add To Bag</button>
+                    <button className="product__atw">wish</button>
                 </div>
             </div>
         </div>

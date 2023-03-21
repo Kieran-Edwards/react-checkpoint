@@ -2,11 +2,15 @@ import Header from "./components/Header";
 import Plp from "./components/Plp";
 import Footer from "./components/Footer";
 
+import "./app.scss";
+
 function App() {
     return (
-        <div>
+        <div className="app">
             <Header />
-            <Plp />
+            <div className="content">
+                <Plp />
+            </div>
             <Footer />
         </div>
     );
