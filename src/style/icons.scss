@@ -1,0 +1,25 @@
+@mixin icon {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+@mixin icon-wishlist-remove {
+    @include icon;
+    background-image: url(../assets/icon-closed-heart.svg);
+}
+
+@mixin icon-wishlist-add {
+    @include icon;
+    background-image: url(../assets/icon-open-heart.svg);
+}
+
+@mixin icon-cart-remove {
+    @include icon;
+    background-image: url(../assets/icon-closed-cart.svg);
+}
+
+@mixin icon-cart-add {
+    @include icon;
+    background-image: url(../assets/icon-open-cart.svg);
+}

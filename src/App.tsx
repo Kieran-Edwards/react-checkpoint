@@ -35,6 +35,8 @@ function App() {
                 <Wishlist onClose={hideModalHandler} />
             )}
             <Header
+                modalOpen={showModal}
+                modalType={modalType}
                 onShowCart={showModalHandler}
                 onShowWishlist={showModalHandler}
             />

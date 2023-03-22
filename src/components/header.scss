@@ -1,19 +1,65 @@
 @import "../style/variables.scss";
+@import "../style/icons.scss";
 
 .header {
     z-index: 999;
     position: fixed;
-    height: 2rem;
+    height: 4rem;
     display: flex;
     background-color: $black;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     color: white;
     top: 0;
     width: 100%;
 
+    -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+
     &__logo {
         height: 100%;
+        padding: 0 1rem 0;
+    }
+
+    &__cart,
+    &__wishlist {
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+
+        span {
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+    }
+
+    &__cart {
+        @include icon-cart-add;
+        filter: invert(100%) sepia(98%) saturate(9%) hue-rotate(169deg)
+            brightness(102%) contrast(105%);
+
+        &:hover,
+        &--filled {
+            @include icon-cart-remove;
+        }
+    }
+
+    &__wishlist {
+        @include icon-wishlist-add;
+        filter: invert(100%) sepia(98%) saturate(9%) hue-rotate(169deg)
+            brightness(102%) contrast(105%);
+
+        &:hover,
+        &--filled {
+            @include icon-wishlist-remove;
+        }
     }
 }
