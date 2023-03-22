@@ -1,0 +1,17 @@
+@import "../style/variables.scss";
+
+.modal-list {
+    &__products {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.modal-item {
+    height: 10rem;
+    display: flex;
+
+    &__img {
+        height: 100%;
+    }
+}

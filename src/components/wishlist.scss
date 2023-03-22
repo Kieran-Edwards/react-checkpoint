@@ -1,0 +1,8 @@
+@import "../style/variables.scss";
+
+.wishlist {
+    &__products {
+        display: flex;
+        flex-direction: column;
+    }
+}

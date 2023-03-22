@@ -1,5 +1,10 @@
+@import "./style/variables.scss";
+
 .app {
     background-color: #f7f7f7;
+    &--modal-open {
+        overscroll-behavior: none contain;
+    }
 }
 
 .content {

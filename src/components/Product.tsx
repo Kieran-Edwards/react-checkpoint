@@ -2,6 +2,9 @@ import React from "react";
 
 import "./product.scss";
 
+import AddToCart from "./AddToCart";
+import AddToWishlist from "./AddToWishlist";
+
 interface ProductProps {
     id: number;
     title: string;
@@ -25,8 +28,8 @@ const Product: React.FC<ProductProps> = (props) => {
                 <h3 className="product__price">{props.price}</h3>
                 {/* <p className="product__desc">{props.desc}</p> */}
                 <div className="product__ctas">
-                    <button className="product__atc">Add To Bag</button>
-                    <button className="product__atw">wish</button>
+                    <AddToCart product={props} />
+                    <AddToWishlist product={props} />
                 </div>
             </div>
         </div>

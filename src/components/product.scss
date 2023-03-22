@@ -48,19 +48,4 @@
         padding-top: 0.2rem;
         text-align: left;
     }
-
-    &__atc {
-        width: 100%;
-        color: white;
-        padding: 0.5rem;
-        cursor: pointer;
-        border: none;
-        background-color: $black;
-    }
-
-    &__atw {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-    }
 }

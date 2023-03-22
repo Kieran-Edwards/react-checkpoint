@@ -1,0 +1,8 @@
+@import "../style/variables.scss";
+
+.cart {
+    &__products {
+        display: flex;
+        flex-direction: column;
+    }
+}

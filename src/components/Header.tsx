@@ -3,7 +3,14 @@ import React from "react";
 import "./header.scss";
 import Logo from "../assets/Logo.jpg";
 
-const Header: React.FC = () => {
+type typeAlias = "wishlist" | "cart";
+
+interface HeaderProps {
+    onShowCart: (type: typeAlias) => void;
+    onShowWishlist: (type: typeAlias) => void;
+}
+
+const Header: React.FC<HeaderProps> = (props) => {
     return (
         <div className="header">
             <img
@@ -11,8 +18,18 @@ const Header: React.FC = () => {
                 src={Logo}
                 alt="website logo depicting the letters KE"
             />
-            <div className="header__wishlist">Wishlist</div>
-            <div className="header__cart">Cart</div>
+            <div
+                className="header__wishlist"
+                onClick={() => props.onShowCart("wishlist")}
+            >
+                Wishlist
+            </div>
+            <div
+                className="header__cart"
+                onClick={() => props.onShowCart("cart")}
+            >
+                Cart
+            </div>
         </div>
     );
 };

@@ -1,0 +1,18 @@
+@import "../style/variables.scss";
+
+.add-to-bag__button {
+    width: 100%;
+    color: white;
+    padding: 0.5rem;
+    cursor: pointer;
+    border: 1px solid $black;
+    background-color: $pri;
+    &:hover {
+        background-color: white;
+        border-color: $sec;
+        color: $black;
+    }
+    &--added {
+        background-color: $sec;
+    }
+}
