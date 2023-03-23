@@ -6,6 +6,7 @@ import "./plp.scss";
 
 const Plp: React.FC = () => {
     const [products, setProducts] = useState([]);
+    const [wishlist, setWishlist] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState();
 
@@ -42,6 +43,38 @@ const Plp: React.FC = () => {
         });
     }, []);
 
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const response = await fetch(
+                `https://react-checkpoint-1-default-rtdb.firebaseio.com/wishlist.json`
+            );
+
+            if (!response.ok) {
+                throw new Error("Something went wrong!");
+            }
+
+            const data = await response.json();
+
+            const loadedProducts = [];
+
+            for (const key in data) {
+                loadedProducts.push({
+                    id: data[key].id,
+                    title: data[key].title,
+                    price: data[key].price,
+                    img: data[key].img,
+                });
+            }
+
+            setWishlist(loadedProducts);
+        };
+
+        fetchProducts().catch((error) => {
+            setIsLoading(false);
+            setHttpError(error.message);
+        });
+    }, []);
+
     if (isLoading) {
         return (
             <section className="plp__loading">
@@ -58,6 +91,16 @@ const Plp: React.FC = () => {
         );
     }
 
+    const checkIsInWishlist = (productId: number) => {
+        let isInWishlist: boolean = false;
+        wishlist.forEach((element) => {
+            if (element.id === productId) {
+                isInWishlist = true;
+            }
+        });
+        return isInWishlist;
+    };
+
     const productList: any[] = products.map((product: any) => (
         <Product
             key={product.id}
@@ -66,6 +109,7 @@ const Plp: React.FC = () => {
             desc={product.desc}
             img={product.img}
             price={product.price}
+            isInWishlist={checkIsInWishlist(product.id)}
         />
     ));
 

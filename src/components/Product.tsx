@@ -11,9 +11,11 @@ interface ProductProps {
     price: number;
     desc: string;
     img: string;
+    isInWishlist: boolean;
 }
 
 const Product: React.FC<ProductProps> = (props) => {
+    console.log(props.isInWishlist);
     return (
         <div className="product">
             <div className="product__img-wrap">
@@ -29,7 +31,10 @@ const Product: React.FC<ProductProps> = (props) => {
                 {/* <p className="product__desc">{props.desc}</p> */}
                 <div className="product__ctas">
                     <AddToCart product={props} />
-                    <AddToWishlist product={props} />
+                    <AddToWishlist
+                        product={props}
+                        isInWishlist={props.isInWishlist}
+                    />
                 </div>
             </div>
         </div>

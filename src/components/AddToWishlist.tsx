@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useCallback, useState } from "react";
 
 import "./addToWishlist.scss";
 
 interface AddToWishlistProps {
+    isInWishlist: boolean;
     product: {
         id: number;
         title: string;
@@ -29,10 +30,16 @@ const AddToWishlist: React.FC<AddToWishlistProps> = (props) => {
     return (
         <div className="add-to-wishlist">
             <button
-                className="add-to-wishlist__button"
+                className={
+                    "add-to-wishlist__button" +
+                    (props.isInWishlist
+                        ? " add-to-wishlist__button--filled"
+                        : "")
+                }
                 onClick={(e: any) => addToWishlist(props.product)}
+                disabled={props.isInWishlist}
             >
-                Wish
+                <span>Wish</span>
             </button>
         </div>
     );
