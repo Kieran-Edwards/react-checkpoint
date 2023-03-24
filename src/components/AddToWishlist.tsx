@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { wishlistActions } from "../store";
+import { wishlistActions } from "../store/wishlist";
 
 import "./addToWishlist.scss";
 
@@ -17,10 +17,11 @@ interface AddToWishlistProps {
 
 const AddToWishlist: React.FC<AddToWishlistProps> = (props) => {
     const dispatch = useDispatch();
-    const wishlist = useSelector((state: any) => state);
+    const wishlist = useSelector((state: any) => state.wishlist);
 
     const checkIsInWishlist = () => {
         if (
+            wishlist.wishlist.length > 0 &&
             wishlist.wishlist.findIndex(
                 (product: { id: number }) => product.id === props.product.id
             ) !== -1

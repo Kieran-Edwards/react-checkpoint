@@ -1,5 +1,7 @@
 import React from "react";
 
+import ToLocale from "./ToLocale";
+
 import "./modalList.scss";
 
 interface ModalListProps {
@@ -17,8 +19,13 @@ const ModalList: React.FC<ModalListProps> = (props) => {
                         alt={product.desc}
                     ></img>
                     <h2>{product.title}</h2>
-                    <h3>{product.price}</h3>
-                    <p>{product.desc}</p>
+                    {product.amount && (
+                        <p>
+                            {product.amount} x {ToLocale(product.price)}
+                        </p>
+                    )}
+                    {!product.amount && <p>{ToLocale(product.price)}</p>}
+                    {/* <p>{product.desc}</p> */}
                 </div>
             ))}
         </div>

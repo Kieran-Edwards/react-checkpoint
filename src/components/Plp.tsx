@@ -24,10 +24,7 @@ const Plp: React.FC = () => {
                     id: productData.id,
                     title: productData.title,
                     desc: productData.description,
-                    price: productData.price.toLocaleString("en-GB", {
-                        style: "currency",
-                        currency: "GBP",
-                    }),
+                    price: productData.price,
                     img: productData.image,
                 };
             });

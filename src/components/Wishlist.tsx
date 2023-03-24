@@ -11,7 +11,7 @@ interface WishlistProps {
 }
 
 const Wishlist: React.FC<WishlistProps> = (props) => {
-    const wishlist = useSelector((state: any) => state);
+    const wishlist = useSelector((state: any) => state.wishlist);
 
     return (
         <Modal onClose={props.onClose}>
@@ -20,7 +20,6 @@ const Wishlist: React.FC<WishlistProps> = (props) => {
             {wishlist.wishlist.length > 0 && (
                 <div className="wishlist__products">
                     <ModalList products={wishlist.wishlist} />
-                    <div>Wishlist totals</div>
                 </div>
             )}
 

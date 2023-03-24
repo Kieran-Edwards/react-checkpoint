@@ -1,9 +1,11 @@
 import React from "react";
 
-import "./product.scss";
+import ToLocale from "./ToLocale";
 
 import AddToCart from "./AddToCart";
 import AddToWishlist from "./AddToWishlist";
+
+import "./product.scss";
 
 interface ProductProps {
     id: number;
@@ -25,7 +27,7 @@ const Product: React.FC<ProductProps> = (props) => {
             </div>
             <h2 className="product__title">{props.title}</h2>
             <div className="product__price-cta-wrap">
-                <h3 className="product__price">{props.price}</h3>
+                <h3 className="product__price">{ToLocale(props.price)}</h3>
                 {/* <p className="product__desc">{props.desc}</p> */}
                 <div className="product__ctas">
                     <AddToCart product={props} />

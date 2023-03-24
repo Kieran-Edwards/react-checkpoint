@@ -1,4 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+
+import { cartActions } from "../store/cart";
 
 import "./addToCart.scss";
 
@@ -13,25 +16,24 @@ interface AddToCartProps {
 }
 
 const AddToCart: React.FC<AddToCartProps> = (props) => {
-    async function addToCart(item: {}) {
-        await fetch(
-            `https://react-checkpoint-1-default-rtdb.firebaseio.com/cart.json`,
-            {
-                method: "POST",
-                body: JSON.stringify(item),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
+    const dispatch = useDispatch();
+
+    const addHandler = () => {
+        dispatch(
+            cartActions.addProduct({
+                id: props.product.id,
+                title: props.product.title,
+                price: props.product.price,
+                desc: props.product.desc,
+                img: props.product.img,
+                amount: 1,
+            })
         );
-    }
+    };
 
     return (
         <div className="add-to-bag">
-            <button
-                className="add-to-bag__button"
-                onClick={(e: any) => addToCart(props.product)}
-            >
+            <button className="add-to-bag__button" onClick={addHandler}>
                 Add to Bag
             </button>
         </div>
