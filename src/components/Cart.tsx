@@ -1,9 +1,10 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import Modal from "./ui/Modal";
 import ModalList from "./ModalList";
 import ToLocale from "./ToLocale";
-
-import { useSelector } from "react-redux";
+import { cartActions } from "../store/cart";
 
 import "./cart.scss";
 
@@ -12,7 +13,13 @@ interface CartProps {
 }
 
 const Cart: React.FC<CartProps> = (props) => {
+    const dispatch = useDispatch();
+
     const basket = useSelector((state: any) => state.cart);
+
+    const clearCart = () => {
+        dispatch(cartActions.clearCart());
+    };
 
     return (
         <Modal onClose={props.onClose}>
@@ -22,11 +29,12 @@ const Cart: React.FC<CartProps> = (props) => {
                 <div className="cart__products">
                     <ModalList products={basket.cart} type="cart" />
                     <div>{ToLocale(basket.total)}</div>
+                    <button onClick={clearCart}>Clear Cart</button>
                 </div>
             )}
 
             {basket.cart.length === 0 && (
-                <div className="basket__empty">
+                <div className="cart__empty">
                     Your basket is empty! Please add some products and try
                     again.
                 </div>

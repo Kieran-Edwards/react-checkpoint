@@ -29,6 +29,18 @@ const ModalList: React.FC<ModalListProps> = (props) => {
         dispatch(wishlistActions.removeProduct(item));
     };
 
+    const cartItemIncreaseHandler = (item: Product) => {
+        dispatch(cartActions.addProduct(item));
+    };
+
+    const cartItemDecreaseHandler = (item: Product) => {
+        dispatch(cartActions.removeProduct(item));
+    };
+
+    const cartItemRemoveHandler = (item: Product) => {
+        dispatch(cartActions.removeAllProduct(item));
+    };
+
     return (
         <div>
             {props.products.map((product) => (
@@ -60,6 +72,52 @@ const ModalList: React.FC<ModalListProps> = (props) => {
                         >
                             Move to Cart
                         </button>
+                    )}
+                    {props.type === "cart" && (
+                        <div>
+                            <button
+                                onClick={(e: any) =>
+                                    cartItemIncreaseHandler({
+                                        id: product.id,
+                                        title: product.title,
+                                        price: product.price,
+                                        desc: product.desc,
+                                        img: product.img,
+                                        amount: 1,
+                                    })
+                                }
+                            >
+                                +
+                            </button>
+                            <button
+                                onClick={(e: any) =>
+                                    cartItemDecreaseHandler({
+                                        id: product.id,
+                                        title: product.title,
+                                        price: product.price,
+                                        desc: product.desc,
+                                        img: product.img,
+                                        amount: 1,
+                                    })
+                                }
+                            >
+                                -
+                            </button>
+                            <button
+                                onClick={(e: any) =>
+                                    cartItemRemoveHandler({
+                                        id: product.id,
+                                        title: product.title,
+                                        price: product.price,
+                                        desc: product.desc,
+                                        img: product.img,
+                                        amount: 1,
+                                    })
+                                }
+                            >
+                                Remove All
+                            </button>
+                        </div>
                     )}
                     {/* <p>{product.desc}</p> */}
                 </div>

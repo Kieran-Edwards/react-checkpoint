@@ -17,8 +17,10 @@ interface AddToCartProps {
 
 const AddToCart: React.FC<AddToCartProps> = (props) => {
     const dispatch = useDispatch();
+    const [clicked, setClicked] = useState(false);
 
     const addHandler = () => {
+        setClicked(true);
         dispatch(
             cartActions.addProduct({
                 id: props.product.id,
@@ -29,12 +31,21 @@ const AddToCart: React.FC<AddToCartProps> = (props) => {
                 amount: 1,
             })
         );
+        setTimeout(() => {
+            setClicked(false);
+        }, 1000);
     };
 
     return (
         <div className="add-to-bag">
-            <button className="add-to-bag__button" onClick={addHandler}>
-                Add to Bag
+            <button
+                className={
+                    "add-to-bag__button" +
+                    (clicked ? " add-to-bag__button--clicked" : "")
+                }
+                onClick={addHandler}
+            >
+                {clicked ? "Added to bag" : "Add To Bag"}
             </button>
         </div>
     );
