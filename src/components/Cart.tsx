@@ -35,8 +35,7 @@ const Cart: React.FC<CartProps> = (props) => {
 
             {basket.cart.length === 0 && (
                 <div className="cart__empty">
-                    Your basket is empty! Please add some products and try
-                    again.
+                    Your basket is empty! Try adding some products
                 </div>
             )}
         </Modal>

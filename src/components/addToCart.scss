@@ -3,7 +3,7 @@
 .add-to-bag__button {
     width: 100%;
     color: white;
-    padding: 0.5rem;
+    padding: 0.75rem;
     cursor: pointer;
     border: 1px solid $black;
     background-color: $pri;
@@ -13,6 +13,10 @@
         color: $black;
     }
     &--clicked {
+        &:hover {
+            color: white;
+            background-color: $sec;
+        }
         background-color: $sec;
     }
 }

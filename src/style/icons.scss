@@ -23,3 +23,8 @@
     @include icon;
     background-image: url(../assets/icon-open-cart.svg);
 }
+
+@mixin icon-close {
+    @include icon;
+    background-image: url(../assets/icon-close.svg);
+}
