@@ -20,7 +20,7 @@ const Cart: React.FC<CartProps> = (props) => {
 
             {basket.cart.length > 0 && (
                 <div className="cart__products">
-                    <ModalList products={basket.cart} />
+                    <ModalList products={basket.cart} type="cart" />
                     <div>{ToLocale(basket.total)}</div>
                 </div>
             )}

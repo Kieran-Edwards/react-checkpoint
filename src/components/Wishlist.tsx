@@ -19,7 +19,7 @@ const Wishlist: React.FC<WishlistProps> = (props) => {
 
             {wishlist.wishlist.length > 0 && (
                 <div className="wishlist__products">
-                    <ModalList products={wishlist.wishlist} />
+                    <ModalList products={wishlist.wishlist} type="wishlist" />
                 </div>
             )}
 
