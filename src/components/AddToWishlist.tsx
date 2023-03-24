@@ -1,9 +1,11 @@
-import React, { useEffect, useCallback, useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { wishlistActions } from "../store";
 
 import "./addToWishlist.scss";
 
 interface AddToWishlistProps {
-    isInWishlist: boolean;
     product: {
         id: number;
         title: string;
@@ -14,30 +16,39 @@ interface AddToWishlistProps {
 }
 
 const AddToWishlist: React.FC<AddToWishlistProps> = (props) => {
-    async function addToWishlist(item: {}) {
-        await fetch(
-            `https://react-checkpoint-1-default-rtdb.firebaseio.com/wishlist.json`,
-            {
-                method: "POST",
-                body: JSON.stringify(item),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        );
-    }
+    const dispatch = useDispatch();
+    const wishlist = useSelector((state: any) => state);
+
+    const checkIsInWishlist = () => {
+        if (
+            wishlist.wishlist.findIndex(
+                (product: { id: number }) => product.id === props.product.id
+            ) !== -1
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    const removeHandler = () => {
+        dispatch(wishlistActions.removeProduct(props.product));
+    };
+
+    const addHandler = () => {
+        dispatch(wishlistActions.addProduct(props.product));
+    };
 
     return (
         <div className="add-to-wishlist">
             <button
                 className={
                     "add-to-wishlist__button" +
-                    (props.isInWishlist
+                    (checkIsInWishlist()
                         ? " add-to-wishlist__button--filled"
                         : "")
                 }
-                onClick={(e: any) => addToWishlist(props.product)}
-                disabled={props.isInWishlist}
+                onClick={checkIsInWishlist() ? removeHandler : addHandler}
             >
                 <span>Wish</span>
             </button>
