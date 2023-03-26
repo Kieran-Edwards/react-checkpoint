@@ -28,8 +28,12 @@ const Cart: React.FC<CartProps> = (props) => {
             {basket.cart.length > 0 && (
                 <div className="cart__products">
                     <ModalList products={basket.cart} type="cart" />
-                    <div>{ToLocale(basket.total)}</div>
-                    <button onClick={clearCart}>Clear Cart</button>
+                    <div className="cart__options-wrap">
+                        <div className="cart__options">
+                            <div>Cart Total: {ToLocale(basket.total)}</div>
+                            <button onClick={clearCart}>Clear Cart</button>
+                        </div>
+                    </div>
                 </div>
             )}
 

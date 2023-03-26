@@ -24,6 +24,14 @@
         padding: 0 1rem 0;
     }
 
+    &__cart-num {
+        color: white;
+        background-color: black;
+        width: 17px;
+        text-align: center;
+        border-radius: 6px;
+    }
+
     &__cart,
     &__wishlist {
         cursor: pointer;

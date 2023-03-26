@@ -1,18 +1,59 @@
 @import "../style/variables.scss";
+@import "../style/icons.scss";
+@import "../style/mixins.scss";
 
-.modal-list {
-    &__products {
-        display: flex;
-        flex-direction: column;
-    }
+.modal-items {
+    max-width: 50rem;
+    width: 90%;
 }
 
 .modal-item {
-    height: 10rem;
     display: flex;
     align-items: center;
+    padding: 2rem;
+    position: relative;
+    background-color: white;
+    margin-bottom: 3rem;
 
+    &__qty-btn {
+        @include remove-default-button;
+        width: 30px;
+        height: 30px;
+    }
+
+    &__details {
+        margin: 0 3rem;
+        width: 100%;
+    }
+
+    &__remove {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 20px;
+        height: 20px;
+        @include remove-default-button;
+        @include icon-close;
+
+        span {
+            @include hide-for-accessibility;
+        }
+    }
+
+    &__move {
+        @include remove-default-button;
+        @include pri-btn;
+    }
+
+    &__img-wrap,
     &__img {
+        max-height: 10rem;
+        width: 10rem;
         height: 100%;
+        object-fit: contain;
+    }
+
+    &__section {
+        flex: 1;
     }
 }

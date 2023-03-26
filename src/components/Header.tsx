@@ -42,9 +42,6 @@ const Header: React.FC<HeaderProps> = (props) => {
             >
                 <span>Wishlist</span>
             </div>
-            {/* <div className="header__ctas">
-                
-            </div> */}
         </div>
     );
 };

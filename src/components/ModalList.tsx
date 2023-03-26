@@ -6,7 +6,6 @@ import { cartActions } from "../store/cart";
 import { wishlistActions } from "../store/wishlist";
 
 import "./modalList.scss";
-
 interface ModalListProps {
     products: any[];
     type: string;
@@ -42,25 +41,21 @@ const ModalList: React.FC<ModalListProps> = (props) => {
     };
 
     return (
-        <div>
+        <div className="modal-items">
             {props.products.map((product) => (
                 <div className="modal-item" key={product.id}>
-                    <img
-                        className="modal-item__img"
-                        src={product.img}
-                        alt={product.desc}
-                    ></img>
-                    <h2>{product.title}</h2>
-                    {product.amount && (
-                        <p>
-                            {product.amount} x {ToLocale(product.price)}
-                        </p>
-                    )}
-                    {!product.amount && <p>{ToLocale(product.price)}</p>}
-                    {props.type === "wishlist" && (
+                    <div className="modal-item__img-wrap">
+                        <img
+                            className="modal-item__img "
+                            src={product.img}
+                            alt={product.desc}
+                        ></img>
+                    </div>
+                    <div className="modal-item__details">
                         <button
+                            className="modal-item__remove"
                             onClick={(e: any) =>
-                                wishlistToCartHandler({
+                                cartItemRemoveHandler({
                                     id: product.id,
                                     title: product.title,
                                     price: product.price,
@@ -70,14 +65,22 @@ const ModalList: React.FC<ModalListProps> = (props) => {
                                 })
                             }
                         >
-                            Move to Cart
+                            <span>Remove All {product.title}</span>
                         </button>
-                    )}
-                    {props.type === "cart" && (
-                        <div>
+
+                        {!product.amount && <h2>{ToLocale(product.price)}</h2>}
+
+                        {product.amount && (
+                            <h2>{ToLocale(product.price * product.amount)}</h2>
+                        )}
+
+                        <h3 className="modal-item__title">{product.title}</h3>
+
+                        {props.type === "wishlist" && (
                             <button
+                                className="modal-item__move"
                                 onClick={(e: any) =>
-                                    cartItemIncreaseHandler({
+                                    wishlistToCartHandler({
                                         id: product.id,
                                         title: product.title,
                                         price: product.price,
@@ -87,38 +90,48 @@ const ModalList: React.FC<ModalListProps> = (props) => {
                                     })
                                 }
                             >
-                                +
+                                Move to Cart
                             </button>
-                            <button
-                                onClick={(e: any) =>
-                                    cartItemDecreaseHandler({
-                                        id: product.id,
-                                        title: product.title,
-                                        price: product.price,
-                                        desc: product.desc,
-                                        img: product.img,
-                                        amount: 1,
-                                    })
-                                }
-                            >
-                                -
-                            </button>
-                            <button
-                                onClick={(e: any) =>
-                                    cartItemRemoveHandler({
-                                        id: product.id,
-                                        title: product.title,
-                                        price: product.price,
-                                        desc: product.desc,
-                                        img: product.img,
-                                        amount: 1,
-                                    })
-                                }
-                            >
-                                Remove All
-                            </button>
-                        </div>
-                    )}
+                        )}
+                        {props.type === "cart" && (
+                            <React.Fragment>
+                                <div>
+                                    <button
+                                        className="modal-item__qty-btn"
+                                        onClick={(e: any) =>
+                                            cartItemIncreaseHandler({
+                                                id: product.id,
+                                                title: product.title,
+                                                price: product.price,
+                                                desc: product.desc,
+                                                img: product.img,
+                                                amount: 1,
+                                            })
+                                        }
+                                    >
+                                        +
+                                    </button>
+                                    {product.amount}
+                                    <button
+                                        className="modal-item__qty-btn"
+                                        onClick={(e: any) =>
+                                            cartItemDecreaseHandler({
+                                                id: product.id,
+                                                title: product.title,
+                                                price: product.price,
+                                                desc: product.desc,
+                                                img: product.img,
+                                                amount: 1,
+                                            })
+                                        }
+                                    >
+                                        -
+                                    </button>
+                                </div>
+                            </React.Fragment>
+                        )}
+                    </div>
+
                     {/* <p>{product.desc}</p> */}
                 </div>
             ))}

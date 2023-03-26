@@ -11,11 +11,13 @@ type Product = {
 
 type ProductState = {
     cart: Product[];
+    items: number;
     total: number;
 };
 
 const initialState: ProductState = {
     cart: [],
+    items: 0,
     total: 0,
 };
 
@@ -43,6 +45,9 @@ const cartSlice = createSlice({
             } else {
                 updatedItems = state.cart.push(action.payload);
             }
+
+            state.items++;
+
             state.total =
                 state.total + action.payload.price * action.payload.amount;
         },
@@ -57,6 +62,8 @@ const cartSlice = createSlice({
                 state.cart[exindex].amount = state.cart[exindex].amount - 1;
             }
 
+            state.items--;
+
             state.total =
                 state.total - action.payload.price * action.payload.amount;
         },
@@ -65,6 +72,8 @@ const cartSlice = createSlice({
             const exindex = state.cart.findIndex(
                 (product) => product.id === action.payload.id
             );
+
+            state.items = state.items - state.cart[exindex].amount;
 
             state.total =
                 state.total - action.payload.price * state.cart[exindex].amount;
@@ -75,6 +84,7 @@ const cartSlice = createSlice({
         clearCart(state) {
             state.cart = [];
             state.total = 0;
+            state.items = 0;
         },
     },
 });

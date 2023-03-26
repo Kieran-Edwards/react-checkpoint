@@ -1,9 +1,33 @@
 @import "../style/variables.scss";
+@import "../style/mixins.scss";
 
 .cart {
+    &__options {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+
+        button {
+            @include remove-default-button;
+        }
+    }
+
+    &__options-wrap {
+        background-color: #f7f7f7;
+        position: fixed;
+        top: 10vh;
+        width: 90%;
+        height: 3rem;
+        max-width: 50rem;
+        display: flex;
+        justify-content: center;
+    }
+
     &__products {
         display: flex;
         flex-direction: column;
+        margin-bottom: 3rem;
     }
 
     &__empty {
@@ -12,4 +36,32 @@
         color: $err;
         margin: 3rem;
     }
+
+    &__labels {
+        display: flex;
+    }
+
+    &__label {
+        flex: 1;
+    }
+
+    &__products {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
+
+// .cart {
+//     &__products {
+//         display: flex;
+//         justify-content: space-evenly;
+
+//         &__item {
+//             border: 1px solid #ddd;
+//             border-radius: 4px;
+//             padding: 20px;
+//             display: flex;
+//         }
+//     }
+// }

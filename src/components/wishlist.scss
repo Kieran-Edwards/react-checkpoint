@@ -4,7 +4,9 @@
     &__products {
         display: flex;
         flex-direction: column;
+        align-items: center;
     }
+
     &__empty {
         display: flex;
         justify-content: center;

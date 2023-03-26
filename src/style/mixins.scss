@@ -8,3 +8,29 @@
     position: absolute;
     width: 1px;
 }
+
+@mixin remove-default-button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+@mixin pri-btn {
+    width: 100%;
+    color: white;
+    padding: 0.75rem;
+    cursor: pointer;
+    border: 1px solid $black;
+    background-color: $pri;
+    border-radius: 15px;
+
+    &:hover {
+        background-color: white;
+        border-color: $sec;
+        color: $black;
+    }
+}
