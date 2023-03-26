@@ -6,22 +6,32 @@ import { cartActions } from "../store/cart";
 import { wishlistActions } from "../store/wishlist";
 
 import "./modalList.scss";
-interface ModalListProps {
-    products: any[];
-    type: string;
-}
 
-type Product = {
+interface Product {
     id: number;
     title: string;
     price: number;
     desc: string;
     img: string;
     amount: number;
-};
+}
+
+interface ModalListProps {
+    products: Product[];
+    type: string;
+}
 
 const ModalList: React.FC<ModalListProps> = (props) => {
     const dispatch = useDispatch();
+
+    const createProductItem = (product: Product) => ({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        desc: product.desc,
+        img: product.img,
+        amount: 1,
+    });
 
     const wishlistToCartHandler = (item: Product) => {
         dispatch(cartActions.addProduct(item));
@@ -49,20 +59,15 @@ const ModalList: React.FC<ModalListProps> = (props) => {
                             className="modal-item__img "
                             src={product.img}
                             alt={product.desc}
-                        ></img>
+                        />
                     </div>
                     <div className="modal-item__details">
                         <button
                             className="modal-item__remove"
-                            onClick={(e: any) =>
-                                cartItemRemoveHandler({
-                                    id: product.id,
-                                    title: product.title,
-                                    price: product.price,
-                                    desc: product.desc,
-                                    img: product.img,
-                                    amount: 1,
-                                })
+                            onClick={() =>
+                                cartItemRemoveHandler(
+                                    createProductItem(product)
+                                )
                             }
                         >
                             <span>Remove All {product.title}</span>
@@ -79,34 +84,24 @@ const ModalList: React.FC<ModalListProps> = (props) => {
                         {props.type === "wishlist" && (
                             <button
                                 className="modal-item__move"
-                                onClick={(e: any) =>
-                                    wishlistToCartHandler({
-                                        id: product.id,
-                                        title: product.title,
-                                        price: product.price,
-                                        desc: product.desc,
-                                        img: product.img,
-                                        amount: 1,
-                                    })
+                                onClick={() =>
+                                    wishlistToCartHandler(
+                                        createProductItem(product)
+                                    )
                                 }
                             >
                                 Move to Cart
                             </button>
                         )}
                         {props.type === "cart" && (
-                            <React.Fragment>
+                            <>
                                 <div>
                                     <button
                                         className="modal-item__qty-btn"
-                                        onClick={(e: any) =>
-                                            cartItemIncreaseHandler({
-                                                id: product.id,
-                                                title: product.title,
-                                                price: product.price,
-                                                desc: product.desc,
-                                                img: product.img,
-                                                amount: 1,
-                                            })
+                                        onClick={() =>
+                                            cartItemIncreaseHandler(
+                                                createProductItem(product)
+                                            )
                                         }
                                     >
                                         +
@@ -114,21 +109,16 @@ const ModalList: React.FC<ModalListProps> = (props) => {
                                     {product.amount}
                                     <button
                                         className="modal-item__qty-btn"
-                                        onClick={(e: any) =>
-                                            cartItemDecreaseHandler({
-                                                id: product.id,
-                                                title: product.title,
-                                                price: product.price,
-                                                desc: product.desc,
-                                                img: product.img,
-                                                amount: 1,
-                                            })
+                                        onClick={() =>
+                                            cartItemDecreaseHandler(
+                                                createProductItem(product)
+                                            )
                                         }
                                     >
                                         -
                                     </button>
                                 </div>
-                            </React.Fragment>
+                            </>
                         )}
                     </div>
 
