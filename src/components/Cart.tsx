@@ -15,10 +15,14 @@ interface CartProps {
 const Cart: React.FC<CartProps> = (props) => {
     const dispatch = useDispatch();
 
-    const basket = useSelector((state: any) => state.cart);
+    const basket = useSelector(
+        (state: { cart: { cart: []; total: number } }) => state.cart
+    );
 
     const clearCart = () => {
-        dispatch(cartActions.clearCart());
+        if (window.confirm("Are you sure you want to clear the cart?")) {
+            dispatch(cartActions.clearCart());
+        }
     };
 
     return (

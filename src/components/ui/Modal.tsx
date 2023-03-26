@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 
 import "./modal.scss";
@@ -7,22 +7,28 @@ interface BackdropProps {
     onClose: () => void;
 }
 
-const Backdrop: React.FC<BackdropProps> = (props) => {
-    return <div className="backdrop" onClick={props.onClose}></div>;
+const Backdrop: React.FC<BackdropProps> = ({ onClose }) => {
+    return (
+        <div
+            className="backdrop"
+            onClick={onClose}
+            aria-label="Click to close the modal"
+        ></div>
+    );
 };
 
-interface ModalOverlayProps {
+interface ModalContentProps {
     onClose: () => void;
     children: React.ReactNode;
 }
 
-const ModalOverlay: React.FC<ModalOverlayProps> = ({ onClose, children }) => {
+const ModalContent: React.FC<ModalContentProps> = ({ onClose, children }) => {
     return (
-        <div className="modal">
+        <div className="modal__content">
             <button className="modal__close" onClick={onClose}>
                 <span>Close</span>
             </button>
-            <div className="modal__content">{children}</div>
+            {children}
         </div>
     );
 };
@@ -32,17 +38,18 @@ interface ModalProps {
     children: React.ReactNode;
 }
 
-const portalEl = document.getElementById("overlays") as HTMLElement;
-
 const Modal: React.FC<ModalProps> = ({ children, onClose }) => {
-    return (
-        <Fragment>
-            {ReactDOM.createPortal(<Backdrop onClose={onClose} />, portalEl)}
-            {ReactDOM.createPortal(
-                <ModalOverlay onClose={onClose}>{children}</ModalOverlay>,
-                portalEl
-            )}
-        </Fragment>
+    const portalEl = document.getElementById("overlays");
+    if (!portalEl) return null;
+
+    return ReactDOM.createPortal(
+        <>
+            <Backdrop onClose={onClose} />
+            <div className="modal" role="dialog">
+                <ModalContent onClose={onClose}>{children}</ModalContent>
+            </div>
+        </>,
+        portalEl
     );
 };
 

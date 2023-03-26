@@ -20,16 +20,9 @@ const AddToWishlist: React.FC<AddToWishlistProps> = (props) => {
     const wishlist = useSelector((state: any) => state.wishlist);
 
     const checkIsInWishlist = () => {
-        if (
-            wishlist.wishlist.length > 0 &&
-            wishlist.wishlist.findIndex(
-                (product: { id: number }) => product.id === props.product.id
-            ) !== -1
-        ) {
-            return true;
-        } else {
-            return false;
-        }
+        return wishlist.wishlist.some(
+            (product: { id: number }) => product.id === props.product.id
+        );
     };
 
     const removeHandler = () => {

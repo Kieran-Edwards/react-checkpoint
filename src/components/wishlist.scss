@@ -7,6 +7,10 @@
         align-items: center;
     }
 
+    &__header {
+        padding: 0 2rem;
+    }
+
     &__empty {
         display: flex;
         justify-content: center;
